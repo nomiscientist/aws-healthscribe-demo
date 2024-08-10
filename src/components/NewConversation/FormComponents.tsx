@@ -8,7 +8,6 @@ import Grid from '@cloudscape-design/components/grid';
 import Input from '@cloudscape-design/components/input';
 import RadioGroup from '@cloudscape-design/components/radio-group';
 import TextContent from '@cloudscape-design/components/text-content';
-import FileUpload from '@cloudscape-design/components/file-upload';
 
 import styles from './NewConversation.module.css';
 import { AudioDetails, AudioSelection } from './types';
@@ -150,41 +149,4 @@ export function AudioDetailSettings({ audioSelection, audioDetails, setAudioDeta
     } else {
         return null;
     }
-}
-
-type AudioUploadProps = {
-    setAudioDetails: React.Dispatch<React.SetStateAction<AudioDetails>>;
-};
-export function AudioUpload({ setAudioDetails }: AudioUploadProps) {
-    return (
-        <FormField label="Upload Audio" description="Upload audio files in English, Dutch, French, or German.">
-            <FileUpload
-                accept=".mp3,.wav,.flac"
-                multiple={false}
-                onChange={({ detail }) =>
-                    setAudioDetails((prevDetails) => ({
-                        ...prevDetails,
-                        audioFile: detail.files[0], // Assuming single file upload
-                        language: detail.language,
-                    }))
-                }
-                inputAriaLabel="Upload audio file"
-            />
-            <RadioGroup
-                label="Select Language"
-                onChange={({ detail }) =>
-                    setAudioDetails((prevDetails) => ({
-                        ...prevDetails,
-                        language: detail.value,
-                    }))
-                }
-                items={[
-                    { value: 'en', label: 'English' },
-                    { value: 'nl', label: 'Dutch' },
-                    { value: 'fr', label: 'French' },
-                    { value: 'de', label: 'German' },
-                ]}
-            />
-        </FormField>
-    );
 }
