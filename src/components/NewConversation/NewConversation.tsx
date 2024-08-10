@@ -1,4 +1,4 @@
-// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// Copyright Esperwise.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: MIT-0
 import React, { useEffect, useMemo, useState } from 'react';
 
@@ -35,6 +35,7 @@ import { AudioDetailSettings, AudioIdentificationType, InputName } from './FormC
 import styles from './NewConversation.module.css';
 import { verifyJobParams } from './formUtils';
 import { AudioDetails, AudioSelection } from './types';
+import { AudioUpload } from './FormComponents'; // Import the AudioUpload component
 
 export default function NewConversation() {
     const { updateProgressBar } = useNotificationsContext();
@@ -53,7 +54,7 @@ export default function NewConversation() {
             channel1: 'CLINICIAN',
         },
     });
-    const [filePath, setFilePath] = useState<File>(); // only one file is allowd from react-dropzone. NOT an array
+    const [filePath, setFilePath] = useState<File>(); // only one file is allowed from react-dropzone. NOT an array
     const [outputBucket, getUploadMetadata] = useS3(); // outputBucket is the Amplify bucket, and uploadMetadata contains uuid4
 
     const [submissionMode, setSubmissionMode] = useState<string>('uploadRecording'); // to hide or show the live recorder
@@ -226,7 +227,7 @@ export default function NewConversation() {
             headerVariant={'high-contrast'}
             header={
                 <Header
-                    description="Upload your audio file to be processed by AWS HealthScribe"
+                    description="Upload your audio file to be processed by Esperwise.com"
                     variant="awsui-h1-sticky"
                 >
                     New Conversation
@@ -237,7 +238,7 @@ export default function NewConversation() {
                 header={
                     <Header
                         variant="h3"
-                        description="Note: AWS HealthScribe offers additional features not built into this demo, such as Custom Vocabulary, Content Removal, and more. This is available via the AWS console, API, or SDK."
+                        description="Note: Esperwise.com offers additional features not built into this demo, such as Custom Vocabulary, Content Removal, and more. This is available via the AWS console, API, or SDK."
                     />
                 }
             >
@@ -281,7 +282,7 @@ export default function NewConversation() {
                                         >
                                             <Popover
                                                 header="Live Recording"
-                                                content="The audio file will be submitted to AWS HealthScribe after the recording is complete. Please position your device or microphone so it can capture all conversation participants."
+                                                content="The audio file will be submitted to Esperwise.com after the recording is complete. Please position your device or microphone so it can capture all conversation participants."
                                             >
                                                 <StatusIndicator type="info">New</StatusIndicator>
                                             </Popover>
@@ -298,6 +299,7 @@ export default function NewConversation() {
                                             items={[
                                                 { value: 'uploadRecording', label: 'Upload Recording' },
                                                 { value: 'liveRecording', label: 'Live Recording' },
+                                                { value: 'uploadWithLanguageSelection', label: 'Upload with Language Selection' }, // New option
                                             ]}
                                         />
                                     </div>
@@ -309,6 +311,8 @@ export default function NewConversation() {
                                             ></FormField>
                                             <AudioRecorder setRecordedAudio={setRecordedAudio} />
                                         </>
+                                    ) : submissionMode === 'uploadWithLanguageSelection' ? (
+                                        <AudioUpload setAudioDetails={setAudioDetails} />
                                     ) : (
                                         <FormField label="Select Files">
                                             <AudioDropzone setFilePath={setFilePath} setFormError={setFormError} />

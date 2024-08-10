@@ -1,4 +1,4 @@
-// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// Copyright Esperwise.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: MIT-0
 import React from 'react';
 
@@ -17,10 +17,10 @@ export function Overview() {
                 <SpaceBetween size={'s'}>
                     <TextContent>
                         <Box variant="p">
-                            This sample ReactJS-based web app shows the art of the possible in using AWS HealthScribe.
+                            This sample ReactJS-based web app shows the art of the possible in using Esperwise Health Services.
                         </Box>
                         <Box variant="p">
-                            AWS HealthScribe is a HIPAA-eligible service empowering healthcare software vendors to build
+                            Esperwise Health Services is a HIPAA-eligible service empowering healthcare software vendors to build
                             clinical applications that automatically generate clinical notes by analyzing
                             patient-clinician conversations.
                         </Box>
@@ -37,8 +37,8 @@ export function Highlights() {
             <Header variant="h2">Highlights</Header>
             <Container>
                 <ul>
-                    <li>Submit an audio file for AWS HealthScribe.</li>
-                    <li>View AWS HealthScribe results.</li>
+                    <li>Submit an audio file for Esperwise Health Services.</li>
+                    <li>View Esperwise Health Services results.</li>
                     <li>Record or generate audio.</li>
                     <li>Integration with Amazon Comprehend Medical.</li>
                 </ul>
@@ -67,8 +67,8 @@ export function Details() {
                     </Box>
                     <Box>
                         <b>
-                            Integrate AWS HealthScribe with{' '}
-                            <Link external href="https://aws.amazon.com/comprehend/medical/">
+                            Integrate Esperwise Health Services with{' '}
+                            <Link external href="https://esperwise.com">
                                 Amazon Comprehend Medical
                             </Link>
                         </b>
@@ -94,7 +94,7 @@ export function Footer() {
     return (
         <Container>
             <Box textAlign="center" color="text-body-secondary" fontSize="body-s">
-                <p>Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.</p>
+                <p>Copyright Esperwise.com, Inc. or its affiliates. All Rights Reserved.</p>
                 <p>
                     Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
                     associated documentation files (the &quot;Software&quot;), to deal in the Software without
