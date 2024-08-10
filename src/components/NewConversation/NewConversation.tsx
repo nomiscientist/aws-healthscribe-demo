@@ -35,7 +35,6 @@ import { AudioDetailSettings, AudioIdentificationType, InputName } from './FormC
 import styles from './NewConversation.module.css';
 import { verifyJobParams } from './formUtils';
 import { AudioDetails, AudioSelection } from './types';
-import { AudioUpload } from './FormComponents'; // Import the AudioUpload component
 
 export default function NewConversation() {
     const { updateProgressBar } = useNotificationsContext();
@@ -54,7 +53,7 @@ export default function NewConversation() {
             channel1: 'CLINICIAN',
         },
     });
-    const [filePath, setFilePath] = useState<File>(); // only one file is allowed from react-dropzone. NOT an array
+    const [filePath, setFilePath] = useState<File>(); // only one file is allowd from react-dropzone. NOT an array
     const [outputBucket, getUploadMetadata] = useS3(); // outputBucket is the Amplify bucket, and uploadMetadata contains uuid4
 
     const [submissionMode, setSubmissionMode] = useState<string>('uploadRecording'); // to hide or show the live recorder
@@ -299,7 +298,6 @@ export default function NewConversation() {
                                             items={[
                                                 { value: 'uploadRecording', label: 'Upload Recording' },
                                                 { value: 'liveRecording', label: 'Live Recording' },
-                                                { value: 'uploadWithLanguageSelection', label: 'Upload with Language Selection' }, // New option
                                             ]}
                                         />
                                     </div>
@@ -311,8 +309,6 @@ export default function NewConversation() {
                                             ></FormField>
                                             <AudioRecorder setRecordedAudio={setRecordedAudio} />
                                         </>
-                                    ) : submissionMode === 'uploadWithLanguageSelection' ? (
-                                        <AudioUpload setAudioDetails={setAudioDetails} />
                                     ) : (
                                         <FormField label="Select Files">
                                             <AudioDropzone setFilePath={setFilePath} setFormError={setFormError} />
